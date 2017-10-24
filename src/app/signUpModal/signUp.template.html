@@ -1,0 +1,113 @@
+<div>
+    <div class="titleDiv">{{ register }}</div>
+    <mat-horizontal-stepper [linear]="isLinear" class="signUpDiv">
+        <mat-step style="height: 20em;" label="Προσωπικά Στοιχεία" [stepControl]="stepOneFormControl">
+            <form [formGroup]="stepOneFormControl">
+                <div>
+                    <mat-form-field class="nameDiv">
+                        <input class="nameInput" type="username" matInput placeholder="Όνομα" required="true" formControlName="nameFormControl" #nameRegister>
+                        <mat-error *ngIf="nameFormControl.hasError('required')">
+                            <strong>Το πεδίο δεν μπορεί να είναι κενό.</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="surnameDiv">
+                        <input class="sunameInput" matInput placeholder="Επωνυμο" required="true" [formControl]="surnameFormControl" #surnameRegister>
+                        <mat-error *ngIf="surnameFormControl.hasError('required')">
+                            <strong>Το πεδίο δεν μπορεί να είναι κενό.</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="birthdayDiv">
+                        <input class="dateInput" matInput [matDatepicker]="picker" placeholder="Ημέρα γέννησης" [formControl]="birthdayFormControl" required="true" [max]="maxDate" [min]="minDate" #birthdayRegister>
+                        <mat-datepicker-toggle matSuffix [for]="picker">Date</mat-datepicker-toggle>
+                        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                        <mat-error *ngIf="birthdayFormControl.hasError('required')">
+                            <strong>Το πεδίο δεν μπορεί να είναι κενό.</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="phoneDiv">
+                        <input #phoneNumber class="phoneInput" type="tel" matInput placeholder="Κινητό Τηλέφωνο" maxlength="10" required="true" [formControl]="phoneFormControl" #phoneRegister>
+                        <mat-error *ngIf="phoneFormControl.hasError('pattern')">
+                            <strong>Λάθος εισαγωγή κινητού τηλεφώνου.</strong>
+                        </mat-error>
+                        <mat-error *ngIf="phoneFormControl.hasError('required')">
+                            <strong>Το πεδίο δεν μπορεί να είναι κενό. Παρακαλώ συμπληρώστε το.</strong>
+                        </mat-error>
+                        <mat-error *ngIf="phoneFormControl.hasError('PhoneValidator')">
+                            <strong>Μόνο αιρθμοί επιτρέπονται σε αυτό το πεδίο.</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-button matStepperNext>Επόμενο</button>
+            </form>
+        </mat-step>
+
+        <mat-step class="tabs" label="Στοιχεία Εισόδου" [stepControl]="stepTwoFormControl">
+            <form [formGroup]="stepTwoFormControl">
+                <div>
+                    <mat-form-field class="emailDiv">
+                        <input matInput class="emailInput" placeholder="Email" [formControl]="emailFormControl" required="true" [formControl]="emailFormControl" #emailRegister>
+                        <mat-error *ngIf="(emailFormControl.hasError('pattern') || emailFormControl.hasError('email'))">
+                            <strong>Παρακαλώ εισάγετε σωστά το Email σας πχ. example@mail.com </strong>
+                        </mat-error>
+                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                            <strong> Ξεχάσατε να γράψετε το Email σας. </strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="passwordDiv">
+                        <input class="passwordInput" type="password" matInput placeholder="Κωδικός πρόσβασης" minlength="8" required="true" [formControl]="passwordFormControl" #passwordRegister>
+                        <mat-error *ngIf="passwordFormControl.hasError('required')">
+                            <strong>Το πεδίο δεν μπορεί να είναι κενό.</strong>
+                        </mat-error>
+                        <mat-error *ngIf="!(this.passwordFormControl.value.length > 8)">
+                            <strong>Ο κωδικός πρέπει να έχει το λιγότερο 8 χαρατήρες</strong>
+                        </mat-error>
+                        <mat-error *ngIf="!this.repasswordFormControl.hasError('passwordValidation')">
+                            <strong>Δεν έχετε εισάγει σωστά την επανάληψη του κωδικού πρόσβασης</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="repasswordDiv">
+                        <input class="repasswordInput" type="password" matInput placeholder="Επανάληψη κωδικού πρόσβασης" minlength="8" required="true" [formControl]="repasswordFormControl" #repasswordRegister>
+                        <mat-error *ngIf="repasswordFormControl.hasError('required')">
+                            <strong>Το πεδίο δεν μπορεί να είναι κενό.</strong>
+                        </mat-error>
+                        <mat-error *ngIf="!(this.repasswordFormControl.value.length > 8)">
+                            <strong>Ο κωδικός πρέπει να έχει το λιγότερο 8 χαρατήρες</strong>
+                        </mat-error>
+                        <mat-error *ngIf="!this.repasswordFormControl.hasError('passwordValidation')">
+                            <strong>Δεν έχετε εισάγει σωστά την επανάληψη του κωδικού πρόσβασης</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-button matStepperPrevious>Πίσω</button>
+                <button mat-button matStepperNext>Επόμενο</button>
+            </form>
+        </mat-step>
+
+        <mat-step class="tabs" label="Ολοκλήρωση Εγγραφής">
+            <div class="captchaDiv">
+                @TODO captcha
+            </div>
+            <div class="termsAggrementCheckDiv">
+                <mat-checkbox (click)="acceptTerms()"></mat-checkbox>
+                <b>Αποδέχομαι τους <a class="termsLink" href="#">όρους χρήσης</a> και την <a class="privacyLink" href="#">πολιτική απορρήτου</a></b>
+            </div>
+            <div class="signUpButtonDiv">
+                <button class="btn btn-block signUpButton" mat-raised-button (click)="registerNewUser()" [disabled]="terms"><b>Εγγραφή</b></button>
+                <mat-error *ngIf="terms">
+                    <strong>Αποδεχτείτε τους όρους και την πολιτική χρήσης για να ολοκληρώσετε την εγγραφή σας</strong>
+                </mat-error>
+            </div>
+            <button mat-button matStepperPrevious>Πίσω</button>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

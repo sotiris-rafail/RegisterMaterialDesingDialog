@@ -1,0 +1,71 @@
+.signUpDiv {
+    background-color: #446973;
+    font-size: 130%;
+}
+
+.titleDiv {
+    background-color: #BCD106;
+    text-align: center;
+    color: #000;
+    font-size: 180%;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.nameDiv,
+.surnameDiv,
+.birthdayDiv,
+.emailDiv,
+.passwordDiv,
+.repasswordDiv,
+.phoneDiv {
+    width: 100%;
+    align-self: auto;
+    padding: 2px;
+}
+
+.passwordDiv,
+.repasswordDiv {
+    margin-bottom: 1.5em;
+}
+
+.nameInput,
+.sunameInput,
+.dateInput,
+.emailInput,
+.passwordInput,
+.repasswordInput,
+.phoneInput {
+    color: #fff;
+}
+
+.termsAggrementCheckDiv {
+    width: 100%;
+    align-self: auto;
+    padding: 0.5em;
+    color: white;
+}
+
+.termsLink {
+    color: #c15c3c;
+}
+
+.privacyLink {
+    color: #c15c3c;
+}
+
+.captchaDiv {
+    padding: 0.5em;
+}
+
+.signUpButtonDiv {
+    padding: 1em;
+}
+
+.signUpButton {
+    font-size: 120%;
+    color: white;
+    background-color: #c15c3c;
+    border: none;
+    border-radius: 10px 10px 10px 10px;
+}
